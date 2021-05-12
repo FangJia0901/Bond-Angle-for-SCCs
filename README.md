@@ -14,7 +14,7 @@ The data that support the findings of this study are available in https://www.ka
 
 Data preprocessing
 ===
-All features which potentially influence SCCs are extracted and engineered with the guidance of prior physicochemical knowledge!The data can first be preprocessed through preprocess.py
+All features which potentially influence SCCs are extracted and engineered with the guidance of prior physicochemical knowledge!The data can first be preprocessed through preprocess.py（runs for hours）and create_crossfolds.py
 
 Getting started
 ====
