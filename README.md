@@ -16,6 +16,10 @@ Data preprocessing
 ===
 All features which potentially influence SCCs are extracted and engineered with the guidance of prior physicochemical knowledge!The data can first be preprocessed through preprocess.py（runs for hours）and create_crossfolds.py（Divide training, validation, and testing ratios）
 
+DrawMolsToImage
+===
+If you want to observe the specific structure of the molecule, you can python DrawMolsToGridImage.py to run the RDKit installation package to visualize the molecule
+
 Training started
 ====
 The model can be run via train7.py.If you want to understand the structure of the model, you can refer to model.py. The GAANN model has been trained by Fastai library in PyTorch framework. We train the model by parallel computation.  
