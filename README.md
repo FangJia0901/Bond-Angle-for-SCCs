@@ -19,6 +19,7 @@ All features which potentially influence SCCs are extracted and engineered with 
 DrawMolsToImage
 ===
 If you want to observe the specific structure of the molecule, you can python DrawMolsToGridImage.py to run the RDKit installation package to visualize the molecule
+If you have trouble installing RDKit, please refer to  http://www.rdkit.org/ or contact me.
 
 Training started
 ====
