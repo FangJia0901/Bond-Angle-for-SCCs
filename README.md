@@ -14,9 +14,9 @@ The data that support the findings of this study are available in https://www.ka
 
 Data preprocessing
 ===
-All features which potentially influence SCCs are extracted and engineered with the guidance of prior physicochemical knowledge!The data can first be preprocessed through preprocess.py（runs for hours）and create_crossfolds.py
+All features which potentially influence SCCs are extracted and engineered with the guidance of prior physicochemical knowledge!The data can first be preprocessed through preprocess.py（runs for hours）and create_crossfolds.py（Divide training, validation, and testing ratios）
 
-Getting started
+Training started
 ====
 The model can be run via train7.py.If you want to understand the structure of the model, you can refer to model.py. We train the model by parallel computation
 . The GAANN model has been trained by Fastai library in PyTorch framework.
