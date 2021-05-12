@@ -35,7 +35,7 @@ def mol_from_xyz(filepath, add_hs=True, compute_dist_centre=False):
 
     atomicNumList, charge, xyz_coordinates = read_xyz_file(filepath)
     mol, dMat = xyz2mol(atomicNumList, charge, xyz_coordinates,
-                        charged_fragments, quick, check_chiral_stereo=False)   #读取XYZ文件可以获取 分子结构mol 和 距离矩阵
+                        charged_fragments, quick, check_chiral_stereo=False)  #The molecular structure mol and distance matrix can be obtained by reading the XYZ file
     return mol, np.array(xyz_coordinates), dMat
 
 def get_molecules():
@@ -55,19 +55,19 @@ def get_molecules():
         print_progress(i, C.N_MOLS)
         filepath = xyz_filepath_list[i]
         mol_name = filepath.split('/')[-1][:-4]
-        mol, xyz, dist_matrix = mol_from_xyz(filepath)    #读取XYZ文件获取结构mol和距离矩阵，坐标
+        mol, xyz, dist_matrix = mol_from_xyz(filepath)    #Read the XYZ file to get the structure mol and the distance matrix, coordinates
         mols[mol_name] = mol
         xyzs[mol_name] = xyz
         dist_matrices[mol_name] = dist_matrix
-        mol_ids[mol_name] = i                            # 数据集中分子序号作为分子的id
+        mol_ids[mol_name] = i                            # The molecular number in the data set is used as the molecular id
 
         # make padded graph distance matrix dataframes
         n_atoms = len(xyz)
         graph_dist_matrix = pd.DataFrame(np.pad(
             rdmolops.GetDistanceMatrix(mol),
-            [(0, 0), (0, C.MAX_N_ATOMS - n_atoms)], 'constant'))    #通过ramolops.GetDistanceMatrix获取 图距离矩阵
-        graph_dist_matrix['molecule_id'] = n_atoms * [i]            # eg: CH4 5 * [0] = [0, 0, 0, 0, 0] list数据可以为dataframe赋值
-        graph_dist_matrices[mol_name] = graph_dist_matrix           #字典：value: dataframe
+            [(0, 0), (0, C.MAX_N_ATOMS - n_atoms)], 'constant'))    #obtain distance matrix through ramolops.GetDistanceMatrix
+        graph_dist_matrix['molecule_id'] = n_atoms * [i]          
+        graph_dist_matrices[mol_name] = graph_dist_matrix           #dict：value: dataframe
 
         # compute molecule level features
         adj_matrix = rdmolops.GetAdjacencyMatrix(mol)      #通过ramolops.GetDistanceMatrix获取 图邻接矩阵
@@ -220,21 +220,21 @@ def add_sc_angle_features(df, xyzs, dist_matrices):
 def add_sc_features(df, structures_df, mol_feats, xyzs, dist_matrices, mol_ids):
     """Add scalar coupling edge and molecule level features to 'df'."""
     # add euclidean distance between scalar coupling atoms
-    df = add_dist(df, structures_df)                   # 获取原子对的距离
+    df = add_dist(df, structures_df)                   # obtain the distance of atomic pairs
 
     # compute distance normalized by scalar coupling type mean and std
-    gb_type_dist = df.groupby('type')['dist']          # df---标量耦合原子对的信息 ###获取耦合种类相同的组信息, 返回特定的SeriesGroupby数据格式
+    gb_type_dist = df.groupby('type')['dist']           ###获取耦合种类相同的组信息, 返回特定的SeriesGroupby数据格式
     df['normed_dist'] = ((df['dist'] - gb_type_dist.transform('mean'))
-                         / gb_type_dist.transform('std'))      # 对相同耦合类型的距离做标准化
+                         / gb_type_dist.transform('std'))      # Normalize the distance of the same coupling type
 
     # add distance features adjusted for atom radii and electronegativity
-    df['R0'] = df['atom_0'].map(C.ATOMIC_RADIUS)                # df中增加原子的半径
+    df['R0'] = df['atom_0'].map(C.ATOMIC_RADIUS)                # add the radius of the atom
     df['R1'] = df['atom_1'].map(C.ATOMIC_RADIUS)
-    df['E0'] = df['atom_0'].map(C.ELECTRO_NEG)                  # df中增加原子的电负性
+    df['E0'] = df['atom_0'].map(C.ELECTRO_NEG)                  # add electronegativity
     df['E1'] = df['atom_1'].map(C.ELECTRO_NEG)
-    df['dist_min_rad'] = df['dist'] - df['R0'] - df['R1']       # 获取 距离减去半径 的值
-    df['dist_electro_neg_adj'] = df['dist'] * (df['E0'] + df['E1']) / 2   # 获取耦合对的电极距
-    df.drop(columns=['R0','R1','E0','E1'], inplace=True)        # 删去df中原子的半径和电负性
+    df['dist_min_rad'] = df['dist'] - df['R0'] - df['R1']       # obtain the value of the surface distance
+    df['dist_electro_neg_adj'] = df['dist'] * (df['E0'] + df['E1']) / 2   # obtain the electrode distance of the coupling pair
+    df.drop(columns=['R0','R1','E0','E1'], inplace=True)        # Deletes the radii and electronegativity of the atoms
 
     # map scalar coupling types to integers and add dummy variables
     df['type'] = df['type'].map(C.TYPES_MAP)                   # 映射耦合类型为数值0～7
@@ -379,9 +379,8 @@ def store_eucl_distances(dist_matrices, atom_df):
         [np.pad(dm, [(0,0), (0, C.MAX_N_ATOMS-dm.shape[1])], mode='constant')
         for dm in dist_matrices.values()]           # dist_matrices: {k:array, K:array, ...} #array是个方阵，需要将列padding到29
     ))
-    dist_df['molecule_id'] = atom_df['molecule_id']  # 将dist_df继续添加一列，达到30列
-    dist_df.to_csv(C.PROC_DATA_PATH + 'dist_df.csv')   # 将dist.df转化为csv文件
-
+    dist_df['molecule_id'] = atom_df['molecule_id']  # Add another column to the dist_df up to 30 columns
+    dist_df.to_csv(C.PROC_DATA_PATH + 'dist_df.csv')   # Convert dist.df to a CSV file
 
 ## Functions to compute cosine angles for all bonds
 def _get_combinations(idx_0_group):                    #
