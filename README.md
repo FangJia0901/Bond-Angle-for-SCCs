@@ -1,6 +1,9 @@
 # Bond-Angle-for-SCCs
+=====
 Requirements
+-----
 Environments
+-----
 Ubuntu 16.04
 CUDA 9.0
 Python 2.7 (For python 3, please checkout python3 branch)
