@@ -18,7 +18,7 @@ All features which potentially influence SCCs are extracted and engineered with 
 
 Getting started
 ====
-The model can be run via train.py.If you want to understand the structure of the model, you can refer to model.py. We train the model by parallel computation
+The model can be run via train7.py.If you want to understand the structure of the model, you can refer to model.py. We train the model by parallel computation
 . The GAANN model has been trained by Fastai library in PyTorch framework.
 
 Performance evaluation
