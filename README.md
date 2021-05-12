@@ -1,10 +1,11 @@
 # Bond-Angle-for-SCCs
 
-##Environments
+Environments
+===
 Ubuntu 16.04. 
 CUDA 9.0  
-Python 2.7 (For python 3, please checkout python3 branch)\<br>
-PyTorch 0.3.1\<br>
+Python 2.7 (For python 3, please checkout python3 branch)  
+PyTorch 0.3.1   
 We used virtualenv to setup a deep learning workspace that supports PyTorch. Run the following script to install the required packages.\<br>
 First：The data that support the findings of this study are available in https://www.kaggle.com/c/champs-scalar-coupling/data. we mainly focused on the features related to molecular structure in the feature engineering, ignoring the electronic or magnetic features such as Mulliken charge and magnetic shielding tensor. We believe that the structural characteristics of molecules are the result of the integrated manifestation of all the influencing factors. The influence of these factors is included in the structural information.
 
