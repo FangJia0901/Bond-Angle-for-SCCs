@@ -2,11 +2,10 @@
 
 Environments
 ===
-Ubuntu 16.04. 
-CUDA 9.0  
-Python 2.7 (For python 3, please checkout python3 branch)  
-PyTorch 0.3.1   
-We used virtualenv to setup a deep learning workspace that supports PyTorch. Run the following script to install the required packages.  
+Ubuntu 16.04.7 
+CUDA 10.1.243  
+Python 3.7.3  
+PyTorch 1.1.0 
 
 Required Data
 ===
@@ -16,8 +15,11 @@ Data preprocessing
 ===
 All features which potentially influence SCCs are extracted and engineered with the guidance of prior physicochemical knowledge!The data can first be preprocessed through preprocess.py
 
-Third:The model can be run via train.py.If you want to understand the structure of the model, you can refer to model.py.We train the model by parallel computation
+Getting started
+====
+The model can be run via train.py.If you want to understand the structure of the model, you can refer to model.py.We train the model by parallel computation
 .The GAANN model has been trained by Fastai library in PyTorch framework.
+
 
 Fourth:In addition, we provide Gaann performance measurement code（such as scatter_type.py),drawing Molecular Structure code.
 
