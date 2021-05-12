@@ -27,4 +27,4 @@ The model can be run via train7.py.If you want to understand the structure of th
 
 Performance evaluation
 ===
-In addition, we provide Gaann performance measurement code（such as scatter_type.py),drawing Molecular Structure code.
+In addition, we provide GAANN performance measurement code（such as scatter_type.py),drawing Molecular Structure code.
