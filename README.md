@@ -1,8 +1,8 @@
 # Bond-Angle-for-SCCs
 
 ##Environments
-Ubuntu 16.04\<br>
-CUDA 9.0\<br>
+Ubuntu 16.04. 
+CUDA 9.0  
 Python 2.7 (For python 3, please checkout python3 branch)\<br>
 PyTorch 0.3.1\<br>
 We used virtualenv to setup a deep learning workspace that supports PyTorch. Run the following script to install the required packages.\<br>
