@@ -1,5 +1,5 @@
 # Bond-Angle-for-SCCs
-The code is being sorted out. If you have any questions, please don't hesitate to contact me.(email: fangjia0901@csu.edu.cn)
+The code is being sorted out. If you have any questions, please don't hesitate to contact me.(email: 2191200398@zju.edu.cn)
 
 Environments
 ===
